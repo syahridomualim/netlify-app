@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrl: 'https://daef-114-10-26-92.ngrok.io'
 };
