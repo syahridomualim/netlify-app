@@ -53,9 +53,9 @@
        </table>
      </div>
 
-     <button type="button" id="openVehicleInfo" data-toggle="modal" data-target="#viewUserModal">
+     <button type="button" [hidden]="true" id="openVehicleInfo" data-toggle="modal" data-target="#viewUserModal">
      </button>
-     <button type="button" id="openUserEdit" data-toggle="modal" data-target="#editUserModal">
+     <button type="button" [hidden]="true" id="openUserEdit" data-toggle="modal" data-target="#editUserModal">
      </button>
 
      <!-- modal user info -->
@@ -217,7 +217,7 @@
            </div>
            <div class="modal-body">
              <div>
-               <form>
+               <form #newVehicleForm="ngForm" (ngSubmit)="addNewVehicle(newVehicleForm)">
                  <div class="form-group">
                    <label for="registeredNumber">Nomor Registrasi Kendaraan</label>
                    <input type="text" name="registeredNumber" required ngModel class="form-control">
@@ -235,13 +235,13 @@
                    <input type="text" name="addresses" required ngModel class="form-control">
                  </div>
                  <div class="form-group">
-                  <label for="productionYear">Tahun Pembuatan</label>
-                  <input type="text" name="productionYear" required ngModel class="form-control">
-                </div>
-                <div class="form-group">
-                  <label for="cylinderCapacity">Kapasitas Silinder</label>
-                  <input type="text" name="cylinderCapacity" required ngModel class="form-control">
-                </div>
+                   <label for="productionYear">Tahun Pembuatan</label>
+                   <input type="number" name="productionYear" required ngModel class="form-control">
+                 </div>
+                 <div class="form-group">
+                   <label for="cylinderCapacity">Kapasitas Silinder</label>
+                   <input type="number" name="cylinderCapacity" required ngModel class="form-control">
+                 </div>
                  <div class="form-group">
                    <label for="color">Warna</label>
                    <select name="color" required ngModel="Merah" class="form-control">
@@ -252,16 +252,16 @@
                    </select>
                  </div>
                  <div class="form-group">
-                  <label for="fuel">Bahan Bakar</label>
-                  <input type="text" name="fuel" required ngModel class="form-control">
-                </div>
-                 <button type="submit" style="display: none;" id="new-user-save"></button>
+                   <label for="fuel">Bahan Bakar</label>
+                   <input type="text" name="fuel" required ngModel class="form-control">
+                 </div>
+                 <button type="submit" style="display: none;" id="new-vehicle-save"></button>
                </form>
              </div>
            </div>
            <div class="modal-footer">
-             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="new-user-close">Close</button>
-             <button type="button"  [disabled]="false" class="btn btn-primary">Save
+             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="new-vehicle-close">Close</button>
+             <button type="button" (click)="saveNewVehicle()" [disabled]="newVehicleForm.invalid" class="btn btn-primary">Save
                changes</button>
            </div>
          </div>

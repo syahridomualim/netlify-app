@@ -16,7 +16,8 @@ import { HomeComponent } from './ui/home/home.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     VehicleService

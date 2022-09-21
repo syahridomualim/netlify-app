@@ -1,5 +1,5 @@
 export interface Vehicle {
-    registeredNumber: number;
+    registeredNumber: string;
     owner: string;
     addresses: string,
     brand: string,

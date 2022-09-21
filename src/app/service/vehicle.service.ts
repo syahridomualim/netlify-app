@@ -18,8 +18,8 @@ export class VehicleService {
     return this.httpClient.get<Vehicle[]>(`${this.host}/vehicle/all`);
   }
 
-  addVehicle(formData: FormData): Observable<Vehicle> {
-    return this.httpClient.post<Vehicle>(`${this.host}/vehicle/add`, formData)
+  addVehicle(vehicleForm: FormData): Observable<Vehicle> {
+    return this.httpClient.post<Vehicle>(`${this.host}/vehicle/add`, vehicleForm)
   }
 
   updateVehicle(formData: FormData): Observable<Vehicle> {
@@ -32,5 +32,20 @@ export class VehicleService {
 
   addVehicleToLocalCache(vehicle: Vehicle[]): void {
     localStorage.setItem('users', JSON.stringify(vehicle));
+  }
+
+  addVehicleFormData(loggedIn: string, vehicle: Vehicle) : FormData {
+    const formData = new FormData();
+    formData.append('currentVehicle', loggedIn);
+    formData.append('registeredNumber', vehicle.registeredNumber);
+    formData.append('owner', vehicle.owner);
+    formData.append('addresses', vehicle.addresses);
+    formData.append('brand', vehicle.brand);
+    formData.append('productionYear', JSON.stringify(vehicle.productionYear));
+    formData.append('cylinderCapacity', JSON.stringify(vehicle.cylinderCapacity));
+    formData.append('color', vehicle.color);
+    formData.append('fuel', vehicle.fuel);
+
+    return formData;
   }
 }
